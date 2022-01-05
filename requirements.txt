@@ -5,3 +5,4 @@ gunicorn==20.1.0
 numpy==1.19.1
 requests==2.26.0
 pickleshare==0.7.5
+lxml = 4.6.1

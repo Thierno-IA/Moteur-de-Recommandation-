@@ -3,6 +3,7 @@ from flask import Flask, request, jsonify, render_template, url_for
 import pickle
 import bz2
 import _pickle as cPickle
+import lxml
 #from pandas import Series, read_csv
 #from joblib import load
 import json
