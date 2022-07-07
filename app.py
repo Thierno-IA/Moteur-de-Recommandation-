@@ -2,31 +2,29 @@ from numpy import load
 from flask import Flask, request, jsonify, render_template, url_for
 import pickle
 import bz2
-import _pickle as cPickle
+import pickle as cPickle
+import sqlite3
 import lxml
-#from pandas import Series, read_csv
-#from joblib import load
 import json
 import requests
-import bs4
 from bs4 import BeautifulSoup
-app = Flask(__name__)
-#rbf_ker_cv = load('rbf_ker_cv.joblib')
-#rbf_ker_cv = load('rbf_ker_cv_pick.pbz2', allow_pickle=True)
-#rbf_ker_cv_z = load('rbf_ker_cv.npz')
-#rbf_ker_cv = rbf_ker_cv_z['a']
-#df = read_csv('df.csv')
 
-file = open('movie_titles.pickle','rb')
+app = Flask(__name__)
+
+connection = sqlite3.connect('movie.db')
+cursor = connection.cursor()
+
+file = cursor.execute("SELECT title FROM Movie")
+file = open('Appli/movie_titles.pickle','rb')
 movie_title = pickle.load(file)
-file = open('imdb_links.pickle','rb')
+file = open('Appli/imdb_links.pickle','rb')
 imdb_links = pickle.load(file)
 
 def decompress_pickle(file):
     data = bz2.BZ2File(file, 'rb')
-    data = cPickle.load(data)
+    data = pickle.load(data)
     return data
-rbf_ker_cv = decompress_pickle('rbf_ker_cv_pick.pbz2') 
+rbf_ker_cv = decompress_pickle('Appli/rbf_ker_cv_pick.pbz2') 
 
 headers = {
     'User-Agent':"Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:94.0) Gecko/20100101 Firefox/94.0"
@@ -59,7 +57,7 @@ def scrapper(movie):
     photos = []
     for i in range(5):
         r = requests.get(list_url_image[i], {'headers':headers})
-        soup = bs4.BeautifulSoup(r.text, 'lxml')
+        soup = BeautifulSoup(r.text, 'lxml')
         image = soup.find_all('div',
                         {'class':"ipc-media ipc-media--poster-27x40 ipc-image-media-ratio--poster-27x40 ipc-media--baseAlt ipc-media--poster-l ipc-poster__poster-image ipc-media__img"})[-1].extract()
         
