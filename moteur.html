@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% block head %} 
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Moteur de Recommandation</title>
+        <style>
+            body {margin: 0;font-family: Verdana, Tahoma, sans-serif;}
+            .topnav {overflow: hidden;background-color: rgb(17, 0, 16);}
+            .topnav a {float: left;color:  brown;text-align: center;padding: 14px 16px;text-decoration: none; font-size: 17px;}            .topnav a:hover {background-color: #ddd;color: black;}
+            .topnav a:hover {background-color: #ddd;color: rgb(1, 4, 2);}
+            * {box-sizing: border-box;}
+            .row {display: flex;}
+            .column {flex: 33.33%;padding: 5px;}
+            .forum{padding: 10px;}
+            .button{height:40px;width:60px;}
+            .whi{color: cornsilk;left:10px;left: 45%;position:absolute;}
+            
+        </style>
+    </head>
+{% endblock %}
+{% block body %} 
+
+<div class="topnav">
+    <a class="active" href="#">Accueil</a>
+    <p class="whi">Moteur de Recommandation</p>
+</div>
+
+<form method="POST">
+    <input type="nm" placeholder="Saisissez votre film" name="nm" size='50'>
+    <button type="submit" class="button">Validez</button>
+  </form>
+
+<div class="row">
+    <div class="column">
+        <h2> {{movie[0]}}</h2>
+        <img src={{imgs[0]}}  alt=""width="200" height="300">   
+    </div>
+    <div class="column">
+        <h2> {{movie[1]}}</h2>
+        <img src={{imgs[1]}}  alt="" width="200" height="300">
+    </div>
+    <div class="column">
+        <h2> {{movie[2]}}</h2>
+        <img src={{imgs[2]}}  alt="" width="200" height="300">
+    </div>
+    <div class="column">
+        <h2> {{movie[3]}}</h2>
+        <img src={{imgs[3]}} alt="" width="200" height="300">
+
+    </div>
+    <div class="column">
+        <h2> {{movie[4]}}</h2>
+        <img src={{imgs[4]}}  alt="" width="200" height="300">
+    </div>
+  </div>
+{%for i in movie%}
+{%endfor%}
+
+{% endblock %}

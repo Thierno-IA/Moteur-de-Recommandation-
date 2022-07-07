@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block head %} 
+    <head>
+        <meta charset="UTF-8">
+        <title>Moteur de Recommandation</title>
+    </head>
+    <style>
+      body {margin: 0;font-family: Verdana, Tahoma, sans-serif;}
+      .topnav {overflow: hidden;background-color: rgb(17, 0, 16);}
+      .topnav a {float: left;color:  brown;text-align: center;padding: 14px 16px;text-decoration: none; font-size: 17px;}
+      .topnav a:hover {background-color: #ddd;color: rgb(1, 4, 2);}
+      .topnav a.active {background-color: rgb(255, 224, 220);color: rgba(43, 73, 85, 0.623);}
+      * {box-sizing: border-box;}
+      .row {display: flex;}
+      .column {flex: 33.33%;padding: 5px;}
+      .forum{padding: 20px;}
+      .button{height:40px;width:60px; 
+        flex: 33.33%;padding: 5px}
+      .center {
+          margin: 0;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          -ms-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+        }
+        .whi{color: rgb(255, 224, 220);left:10px;left: 45%;position:absolute;}
+  </style>
+{% endblock %}
+{% block body %} 
+<div class="topnav">
+  <a class="active" href="#">Accueil</a>
+  <p class="whi">Moteur de Recommandation de film</p>
+
+</div>
+<div class="center">
+  <form method="POST">
+    <input type="nm" class="zone"placeholder="Saisissez le nom de votre film" name="nm" size='50'>
+    <button type="submit" class="button">Validez</button>
+  </form>
+</div>
+
+<h1>{{movie}}</h1>
+{% endblock %}
